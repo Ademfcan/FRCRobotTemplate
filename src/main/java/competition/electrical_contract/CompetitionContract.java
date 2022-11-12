@@ -16,11 +16,37 @@ public class CompetitionContract extends ElectricalContract {
 
     @Override
     public CANTalonInfo getLeftLeader() {
-        return new CANTalonInfo(1, true, FeedbackDevice.CTRE_MagEncoder_Absolute, true, simulationScalingValue);
+        return new CANTalonInfo(33, false, FeedbackDevice.CTRE_MagEncoder_Absolute, false, simulationScalingValue);
     }
 
     @Override
     public CANTalonInfo getRightLeader() {
-        return new CANTalonInfo(2, true, FeedbackDevice.CTRE_MagEncoder_Absolute, true, simulationScalingValue);
+        return new CANTalonInfo(22, true, FeedbackDevice.CTRE_MagEncoder_Absolute, true, simulationScalingValue);
     }
+
+
+    public CANTalonInfo left2(){
+
+        return new CANTalonInfo(32, false, FeedbackDevice.CTRE_MagEncoder_Absolute, false, simulationScalingValue);
+
+    }
+
+    public CANTalonInfo left3(){
+        return new CANTalonInfo(34, false, FeedbackDevice.CTRE_MagEncoder_Absolute, false, simulationScalingValue);
+    }
+
+    public CANTalonInfo right2(){
+        return new CANTalonInfo(21, true, FeedbackDevice.CTRE_MagEncoder_Absolute, true, simulationScalingValue);
+
+    }
+
+    public CANTalonInfo right3(){
+        return new CANTalonInfo(23, true, FeedbackDevice.CTRE_MagEncoder_Absolute, true, simulationScalingValue);
+
+    }
+
+
+
+
+
 }

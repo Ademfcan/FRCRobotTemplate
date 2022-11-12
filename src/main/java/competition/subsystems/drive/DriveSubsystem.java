@@ -23,6 +23,13 @@ public class DriveSubsystem extends BaseDriveSubsystem {
     public final XCANTalon leftLeader;
     public final XCANTalon rightLeader;
 
+    public final XCANTalon left2;
+    public final XCANTalon left3;
+
+    public final XCANTalon right2;
+    public final XCANTalon right3;
+
+
     private final PIDManager positionPid;
     private final PIDManager rotationPid;
 
@@ -34,9 +41,30 @@ public class DriveSubsystem extends BaseDriveSubsystem {
 
         this.leftLeader = talonFactory.create(contract.getLeftLeader());
         this.rightLeader = talonFactory.create(contract.getRightLeader());
+        
+        this.left2 = talonFactory.create(contract.left2());
+        this.left3 = talonFactory.create(contract.left3());
+        
+        this.right2 = talonFactory.create(contract.right2());
+        this.right3 = talonFactory.create(contract.right3());
+
+        leftLeader.configureAsFollowerMotor(leftLeader, false);
+        rightLeader.configureAsFollowerMotor(rightLeader, false);
+
+        left2.configureAsFollowerMotor(leftLeader, true);
+        left3.configureAsFollowerMotor(leftLeader, true);
+
+        right2.configureAsFollowerMotor(rightLeader, true);
+        right3.configureAsFollowerMotor(rightLeader, true);
+
 
         positionPid = pf.create(getPrefix() + "PositionPID");
         rotationPid = pf.create(getPrefix() + "RotationPID");
+
+        leftLeader.createTelemetryProperties(this.getPrefix(), "frontLeft");
+        rightLeader.createTelemetryProperties(this.getPrefix(), "frontRight");
+
+        this.register();
     }
 
     public void tankDrive(double leftPower, double rightPower) {
